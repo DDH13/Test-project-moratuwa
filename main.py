@@ -1,44 +1,31 @@
-import random
+import pandas as pd
 
-first_names = [
-    "James", "Mary", "Robert", "Patricia", "Michael", "Jennifer", "William", "Linda",
-    "David", "Barbara", "Richard", "Elizabeth", "Joseph", "Susan", "Thomas", "Jessica",
-    "Charles", "Sarah", "Christopher", "Karen", "Daniel", "Nancy", "Matthew", "Lisa",
-    "Mark", "Betty", "Donald", "Margaret", "Steven", "Sandra", "Paul", "Ashley",
-    "Andrew", "Kimberly", "Joshua", "Emily", "Kenneth", "Donna", "Kevin", "Carol"
-]
+# === STUDENT IMPORTS: add your import below, one per line ===
 
-last_names = [
-    "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis",
-    "Rodriguez", "Martinez", "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson",
-    "Thomas", "Taylor", "Moore", "Jackson", "Martin", "Lee", "Perez", "Thompson",
-    "White", "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson", "Walker"
-]
 
-def generate_name():
-    return f"{random.choice(first_names)} {random.choice(last_names)}"
+DATA_FILE = "Education_numerical.csv"
 
-students = [
-    {"id": f"S{i:03d}", "name": generate_name(), "class": f"Class {(i % 5) + 1}"}
-    for i in range(1, 31)
-]
 
-teachers = [
-    {"id": f"T{i:03d}", "name": generate_name(), "subject": f"Subject {(i % 5) + 1}"}
-    for i in range(1, 31)
-]
+def load_data(path=DATA_FILE):
+    return pd.read_csv(path)
 
-classes = [
-    {"id": f"C{i}", "name": f"Class {i}", "capacity": 30}
-    for i in range(1, 6)
-]
 
-subjects = [
-    {"id": f"Sub{i}", "name": f"Subject {i}"}
-    for i in range(1, 6)
-]
+# === STUDENT FUNCTIONS: add your function below ===
+# Each function must be named task_<NN>_<slug>(df) per the table in Readme.md,
+# and must return its result (not just print it) so test.py can check it.
 
-print(f"Students: {len(students)}")
-print(f"Teachers: {len(teachers)}")
-print(f"Classes: {len(classes)}")
-print(f"Subjects: {len(subjects)}")
+
+def run_analysis(df):
+    print("Dataset shape:", df.shape)
+    print(df.head())
+
+    # === STUDENT CALLS: register your function call below ===
+
+
+def main():
+    df = load_data()
+    run_analysis(df)
+
+
+if __name__ == "__main__":
+    main()
