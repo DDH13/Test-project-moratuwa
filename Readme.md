@@ -43,6 +43,7 @@ This repo contains `main.py`, a small script that loads `Education_numerical.csv
    - Run `python test.py` and confirm every previously-passing task (not just yours) still passes.
    - Push the resolved branch.
 5. Get at least one classmate's review/approval on your PR before merging.
+6. Tag me @DDH13 to merge the PR (make sure all conflicts are resolved)
 
 ### The 13 tasks
 
