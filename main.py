@@ -14,14 +14,16 @@ def load_data(path=DATA_FILE):
 # === STUDENT FUNCTIONS: add your function below ===
 # Each function must be named task_<NN>_<slug>(df) per the table in Readme.md,
 # and must return its result (not just print it) so test.py can check it.
-#
-# Example 
-#
-# def task_00_example(df):
-#     result = int((df["quiz_attempts"] > 5).sum())
-#     print("Students with more than 5 quiz attempts:", result)
-#     return result
+def task_01_dataset_overview(df):
+    shape = df.shape
+    columns_list = df.columns.tolist()
 
+    print("Task 1 - Dataset overview")
+    print("Number of rows:", shape[0])
+    print("Number of columns:", shape[1])
+    print("Column names:", columns_list)
+
+    return shape, columns_list
 
 def run_analysis(df):
     print("Dataset shape:", df.shape)
@@ -29,7 +31,7 @@ def run_analysis(df):
 
     # === STUDENT CALLS: register your function call below ===
     # Example: task_00_example(df)
-
+    task_01_dataset_overview(df)
 
 def main():
     df = load_data()
