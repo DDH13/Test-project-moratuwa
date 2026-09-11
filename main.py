@@ -22,6 +22,16 @@ def load_data(path=DATA_FILE):
 #     print("Students with more than 5 quiz attempts:", result)
 #     return result
 
+def task_06_study_habits(df):
+    average = df["study_hours_week"].mean()
+    maximum = df["study_hours_week"].max()
+    
+    result = (average, maximum)
+    print("Study hours per week - Average:", average)
+    print("Study hours per week - Maximum:", maximum)
+    
+    return result
+
 
 def run_analysis(df):
     print("Dataset shape:", df.shape)
@@ -29,6 +39,8 @@ def run_analysis(df):
 
     # === STUDENT CALLS: register your function call below ===
     # Example: task_00_example(df)
+
+    task_06_study_habits(df)
 
 
 def main():
