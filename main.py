@@ -1,4 +1,5 @@
 import random
+import pandas as pd
 
 first_names = [
     "James", "Mary", "Robert", "Patricia", "Michael", "Jennifer", "William", "Linda",
@@ -37,19 +38,21 @@ subjects = [
     {"id": f"Sub{i}", "name": f"Subject {i}"}
     for i in range(1, 6)
 ]
-# Task 03: Data Quality Check Function
-def task_03_data_quality(students_list):
-    missing_count = 0
-    for student in students_list:
-        
-        if not student.get("id") or not student.get("name") or not student.get("class"):
-            missing_count += 1
-    return missing_count
+# Task 03: Data Quality Check Function (Updated for DataFrame)
+def task_03_data_quality(df):
+    missing_counts_dict = df.isnull().sum().to_dict()
+    duplicate_count = int(df.duplicated().sum())
+    return (missing_counts_dict, duplicate_count)
+
+df_students = pd.DataFrame(students)
+
+missing_dict, duplicates = task_03_data_quality(df_students)
+
+print(f"Missing values per column: {missing_dict}")
+print(f"Duplicate rows count: {duplicates}")
 
 print(f"Students: {len(students)}")
 print(f"Teachers: {len(teachers)}")
 print(f"Classes: {len(classes)}")
 print(f"Subjects: {len(subjects)}")
 
-missing_records = task_03_data_quality(students)
-print(f"Missing records in Data Quality Check: {missing_records}")
