@@ -22,6 +22,8 @@ def load_data(path=DATA_FILE):
 #     print("Students with more than 5 quiz attempts:", result)
 #     return result
 
+def task_12_most_common_study_time(df):
+    return df["peak_study_time"].value_counts().idxmax()
 
 def run_analysis(df):
     print("Dataset shape:", df.shape)
@@ -29,6 +31,7 @@ def run_analysis(df):
 
     # === STUDENT CALLS: register your function call below ===
     # Example: task_00_example(df)
+    task_12_most_common_study_time(df)
 
 
 def main():
