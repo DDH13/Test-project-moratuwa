@@ -12,6 +12,11 @@ def load_data(path=DATA_FILE):
 
 
 # === STUDENT FUNCTIONS: add your function below ===
+def task_04_top_scorers(df):
+    top10 = df.sort_values("predicted_score", ascending=False).head(10)
+    result = top10["student_id"].tolist()
+    print("Top 10 scorers:", result)
+    return result
 # Each function must be named task_<NN>_<slug>(df) per the table in Readme.md,
 # and must return its result (not just print it) so test.py can check it.
 #
@@ -28,6 +33,7 @@ def run_analysis(df):
     print(df.head())
 
     # === STUDENT CALLS: register your function call below ===
+    task_04_top_scorers(df)
     # Example: task_00_example(df)
 
 
