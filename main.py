@@ -22,12 +22,17 @@ def load_data(path=DATA_FILE):
 #     print("Students with more than 5 quiz attempts:", result)
 #     return result
 
+def task_11_improvement_check(df):
+    percentage = (df["improvement_rate"] > 1).mean() * 100
+    print("Percentage of students with improvement rate greater than 1:", percentage)
+    return percentage
 
 def run_analysis(df):
     print("Dataset shape:", df.shape)
     print(df.head())
 
     # === STUDENT CALLS: register your function call below ===
+    task_11_improvement_check(df)
     # Example: task_00_example(df)
 
 
