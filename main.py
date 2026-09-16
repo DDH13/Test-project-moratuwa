@@ -25,13 +25,15 @@ def task_08_score_distribution_plot(df):
 # Each function must be named task_<NN>_<slug>(df) per the table in Readme.md,
 # and must return its result (not just print it) so test.py can check it.
 #
-# Example 
+# Example
 #
 # def task_00_example(df):
 #     result = int((df["quiz_attempts"] > 5).sum())
 #     print("Students with more than 5 quiz attempts:", result)
 #     return result
 
+def task_12_most_common_study_time(df):
+    return df["peak_study_time"].value_counts().idxmax()
 
 def run_analysis(df):
     print("Dataset shape:", df.shape)
@@ -39,6 +41,7 @@ def run_analysis(df):
 
     # === STUDENT CALLS: register your function call below ===
     # Example: task_00_example(df)
+    task_12_most_common_study_time(df)
     task_08_score_distribution_plot(df)
 
 def main():
