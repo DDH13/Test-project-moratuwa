@@ -3,6 +3,7 @@ import pandas as pd
 # === STUDENT IMPORTS: add your import below, one per line ===
 # Example: import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 DATA_FILE = "Education_numerical.csv"
 
@@ -31,6 +32,16 @@ def task_08_score_distribution_plot(df):
 #     result = int((df["quiz_attempts"] > 5).sum())
 #     print("Students with more than 5 quiz attempts:", result)
 #     return result
+def task_09_study_vs_score_plot(df):
+    fig, ax = plt.subplots(figsize=(8, 5))
+    sns.scatterplot(data=df, x='study_hours_week', y='predicted_score', ax=ax)
+    ax.set_title('Study Hours vs Predicted Score')
+    ax.set_xlabel('Study Hours Per Week')
+    ax.set_ylabel('Predicted Score')
+    
+    # Image file එක save කිරීම
+    fig.savefig('study_vs_predicted.png')
+    return fig
 
 def task_12_most_common_study_time(df):
     return df["peak_study_time"].value_counts().idxmax()
@@ -41,6 +52,7 @@ def run_analysis(df):
 
     # === STUDENT CALLS: register your function call below ===
     # Example: task_00_example(df)
+    task_09_study_vs_score_plot(df) 
     task_12_most_common_study_time(df)
     task_08_score_distribution_plot(df)
 
