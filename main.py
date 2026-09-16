@@ -32,6 +32,17 @@ def task_08_score_distribution_plot(df):
 #     print("Students with more than 5 quiz attempts:", result)
 #     return result
 
+def task_06_study_habits(df):
+    average = df["study_hours_week"].mean()
+    maximum = df["study_hours_week"].max()
+    
+    result = (average, maximum)
+    print("Study hours per week - Average:", average)
+    print("Study hours per week - Maximum:", maximum)
+    
+    return result
+
+
 def task_12_most_common_study_time(df):
     return df["peak_study_time"].value_counts().idxmax()
 
@@ -41,6 +52,7 @@ def run_analysis(df):
 
     # === STUDENT CALLS: register your function call below ===
     # Example: task_00_example(df)
+    task_06_study_habits(df)
     task_12_most_common_study_time(df)
     task_08_score_distribution_plot(df)
 
