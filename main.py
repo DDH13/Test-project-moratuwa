@@ -1,7 +1,6 @@
 import pandas as pd
 
 # === STUDENT IMPORTS: add your import below, one per line ===
-# Example: import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
 
 DATA_FILE = "Education_numerical.csv"
@@ -12,6 +11,12 @@ def load_data(path=DATA_FILE):
 
 
 # === STUDENT FUNCTIONS: add your function below ===
+
+def task_05_bottom_scorers(df):
+    bottom = df.sort_values("predicted_score", ascending=True).head(10)
+    result = bottom["student_id"].tolist()
+    print("Bottom 10 scorers:", result)
+    return result
 def task_08_score_distribution_plot(df):
     plt.figure()
     df["overall_avg"].plot(kind="hist", bins=10, edgecolor="black")
@@ -22,16 +27,6 @@ def task_08_score_distribution_plot(df):
     plt.savefig(output_path)
     plt.close()
     return output_path
-# Each function must be named task_<NN>_<slug>(df) per the table in Readme.md,
-# and must return its result (not just print it) so test.py can check it.
-#
-# Example
-#
-# def task_00_example(df):
-#     result = int((df["quiz_attempts"] > 5).sum())
-#     print("Students with more than 5 quiz attempts:", result)
-#     return result
-
 def task_12_most_common_study_time(df):
     return df["peak_study_time"].value_counts().idxmax()
 
@@ -40,7 +35,7 @@ def run_analysis(df):
     print(df.head())
 
     # === STUDENT CALLS: register your function call below ===
-    # Example: task_00_example(df)
+    task_05_bottom_scorers(df)
     task_12_most_common_study_time(df)
     task_08_score_distribution_plot(df)
 
