@@ -22,6 +22,22 @@ def load_data(path=DATA_FILE):
 #     print("Students with more than 5 quiz attempts:", result)
 #     return result
 
+def task_02_preview_data(df):
+    first_five = df.head(5)
+    last_five = df.tail(5)
+
+    print("Task 2 - Preview the data")
+
+    print("\nFirst 5 rows:")
+    print(first_five)
+
+    print("\nLast 5 rows:")
+    print(last_five)
+
+    head_ids = first_five["student_id"].tolist()
+    tail_ids = last_five["student_id"].tolist()
+
+    return head_ids, tail_ids
 
 def run_analysis(df):
     print("Dataset shape:", df.shape)
@@ -29,6 +45,7 @@ def run_analysis(df):
 
     # === STUDENT CALLS: register your function call below ===
     # Example: task_00_example(df)
+    task_02_preview_data(df)
 
 
 def main():
