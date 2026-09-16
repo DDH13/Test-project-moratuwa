@@ -21,7 +21,27 @@ def load_data(path=DATA_FILE):
 #     result = int((df["quiz_attempts"] > 5).sum())
 #     print("Students with more than 5 quiz attempts:", result)
 #     return result
-
+def task_13_summary_export(df):
+    
+    min_score = df['predicted_score'].min()
+    max_score = df['predicted_score'].max()
+    mean_score = df['predicted_score'].mean()
+    
+    
+    summary_df = pd.DataFrame([{
+        'min': min_score,
+        'max': max_score,
+        'mean': mean_score
+    }])
+    
+    file_path = "summary_report.csv"
+    summary_df.to_csv(file_path, index=False)
+    
+    print("\n--- Task 13: Summary Export ---")
+    print(summary_df)
+    
+    
+    return file_path
 
 def run_analysis(df):
     print("Dataset shape:", df.shape)
@@ -29,7 +49,8 @@ def run_analysis(df):
 
     # === STUDENT CALLS: register your function call below ===
     # Example: task_00_example(df)
-
+  # Task 13 function call 
+    task_13_summary_export(df)
 
 def main():
     df = load_data()
