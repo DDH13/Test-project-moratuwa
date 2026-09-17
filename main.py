@@ -31,6 +31,13 @@ def task_08_score_distribution_plot(df):
 #     result = int((df["quiz_attempts"] > 5).sum())
 #     print("Students with more than 5 quiz attempts:", result)
 #     return result
+def task_07_class_size_groups(df):
+    small = (df["class_size"] < 20).sum()
+    medium = ((df["class_size"] >= 20) & (df["class_size"] <= 40)).sum()
+    large = (df["class_size"] > 40).sum()
+    result = {"small": int(small), "medium": int(medium), "large": int(large)}
+    print(result)
+    return result
 
 def task_12_most_common_study_time(df):
     return df["peak_study_time"].value_counts().idxmax()
@@ -41,6 +48,7 @@ def run_analysis(df):
 
     # === STUDENT CALLS: register your function call below ===
     # Example: task_00_example(df)
+    task_07_class_size_groups(df)
     task_12_most_common_study_time(df)
     task_08_score_distribution_plot(df)
 
