@@ -12,6 +12,35 @@ def load_data(path=DATA_FILE):
 
 
 # === STUDENT FUNCTIONS: add your function below ===
+# Each function must be named task_<NN>_<slug>(df) per the table in Readme.md,
+# and must return its result (not just print it) so test.py can check it.
+#
+# Example
+#
+# def task_00_example(df):
+#     result = int((df["quiz_attempts"] > 5).sum())
+#     print("Students with more than 5 quiz attempts:", result)
+#     return result
+
+def task_01_dataset_overview(df):
+    shape = df.shape
+    columns_list = df.columns.tolist()
+
+    print("Task 1 - Dataset overview")
+    print("Number of rows:", shape[0])
+    print("Number of columns:", shape[1])
+    print("Column names:", columns_list)
+
+    return shape, columns_list
+
+def task_07_class_size_groups(df):
+    small = (df["class_size"] < 20).sum()
+    medium = ((df["class_size"] >= 20) & (df["class_size"] <= 40)).sum()
+    large = (df["class_size"] > 40).sum()
+    result = {"small": int(small), "medium": int(medium), "large": int(large)}
+    print(result)
+    return result
+
 def task_08_score_distribution_plot(df):
     plt.figure()
     df["overall_avg"].plot(kind="hist", bins=10, edgecolor="black")
@@ -22,22 +51,6 @@ def task_08_score_distribution_plot(df):
     plt.savefig(output_path)
     plt.close()
     return output_path
-# Each function must be named task_<NN>_<slug>(df) per the table in Readme.md,
-# and must return its result (not just print it) so test.py can check it.
-#
-# Example
-#
-# def task_00_example(df):
-#     result = int((df["quiz_attempts"] > 5).sum())
-#     print("Students with more than 5 quiz attempts:", result)
-#     return result
-def task_07_class_size_groups(df):
-    small = (df["class_size"] < 20).sum()
-    medium = ((df["class_size"] >= 20) & (df["class_size"] <= 40)).sum()
-    large = (df["class_size"] > 40).sum()
-    result = {"small": int(small), "medium": int(medium), "large": int(large)}
-    print(result)
-    return result
 
 def task_12_most_common_study_time(df):
     return df["peak_study_time"].value_counts().idxmax()
@@ -48,9 +61,10 @@ def run_analysis(df):
 
     # === STUDENT CALLS: register your function call below ===
     # Example: task_00_example(df)
+    task_01_dataset_overview(df)
     task_07_class_size_groups(df)
-    task_12_most_common_study_time(df)
     task_08_score_distribution_plot(df)
+    task_12_most_common_study_time(df)
 
 def main():
     df = load_data()
