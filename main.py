@@ -39,6 +39,10 @@ def task_07_class_size_groups(df):
     print(result)
     return result
 
+def task_11_improvement_check(df):
+    percentage = (df["improvement_rate"] > 1).mean() * 100
+    print("Percentage of students with improvement rate greater than 1:", percentage)
+    return percentage
 def task_12_most_common_study_time(df):
     return df["peak_study_time"].value_counts().idxmax()
 
@@ -47,6 +51,7 @@ def run_analysis(df):
     print(df.head())
 
     # === STUDENT CALLS: register your function call below ===
+    task_11_improvement_check(df)
     # Example: task_00_example(df)
     task_07_class_size_groups(df)
     task_12_most_common_study_time(df)
