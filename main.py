@@ -3,6 +3,7 @@ import pandas as pd
 # === STUDENT IMPORTS: add your import below, one per line ===
 # Example: import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 DATA_FILE = "Education_numerical.csv"
 
@@ -12,6 +13,35 @@ def load_data(path=DATA_FILE):
 
 
 # === STUDENT FUNCTIONS: add your function below ===
+# Each function must be named task_<NN>_<slug>(df) per the table in Readme.md,
+# and must return its result (not just print it) so test.py can check it.
+#
+# Example
+#
+# def task_00_example(df):
+#     result = int((df["quiz_attempts"] > 5).sum())
+#     print("Students with more than 5 quiz attempts:", result)
+#     return result
+
+def task_01_dataset_overview(df):
+    shape = df.shape
+    columns_list = df.columns.tolist()
+
+    print("Task 1 - Dataset overview")
+    print("Number of rows:", shape[0])
+    print("Number of columns:", shape[1])
+    print("Column names:", columns_list)
+
+    return shape, columns_list
+
+def task_07_class_size_groups(df):
+    small = (df["class_size"] < 20).sum()
+    medium = ((df["class_size"] >= 20) & (df["class_size"] <= 40)).sum()
+    large = (df["class_size"] > 40).sum()
+    result = {"small": int(small), "medium": int(medium), "large": int(large)}
+    print(result)
+    return result
+
 def task_08_score_distribution_plot(df):
     plt.figure()
     df["overall_avg"].plot(kind="hist", bins=10, edgecolor="black")
@@ -31,6 +61,16 @@ def task_08_score_distribution_plot(df):
 #     result = int((df["quiz_attempts"] > 5).sum())
 #     print("Students with more than 5 quiz attempts:", result)
 #     return result
+def task_09_study_vs_score_plot(df):
+    fig, ax = plt.subplots(figsize=(8, 5))
+    sns.scatterplot(data=df, x='study_hours_week', y='predicted_score', ax=ax)
+    ax.set_title('Study Hours vs Predicted Score')
+    ax.set_xlabel('Study Hours Per Week')
+    ax.set_ylabel('Predicted Score')
+    
+    # Image file එක save කිරීම
+    fig.savefig('study_vs_predicted.png')
+    return fig
 
 def task_06_study_habits(df):
     average = df["study_hours_week"].mean()
@@ -43,6 +83,12 @@ def task_06_study_habits(df):
     return result
 
 
+def task_11_improvement_check(df):
+    percentage = (df["improvement_rate"] > 1).mean() * 100
+    print("Percentage of students with improvement rate greater than 1:", percentage)
+    return percentage
+
+
 def task_12_most_common_study_time(df):
     return df["peak_study_time"].value_counts().idxmax()
 
@@ -51,10 +97,14 @@ def run_analysis(df):
     print(df.head())
 
     # === STUDENT CALLS: register your function call below ===
+    task_11_improvement_check(df)
     # Example: task_00_example(df)
     task_06_study_habits(df)
-    task_12_most_common_study_time(df)
+    task_09_study_vs_score_plot(df) 
+    task_01_dataset_overview(df)
+    task_07_class_size_groups(df)
     task_08_score_distribution_plot(df)
+    task_12_most_common_study_time(df)
 
 def main():
     df = load_data()
