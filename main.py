@@ -72,6 +72,10 @@ def task_09_study_vs_score_plot(df):
     fig.savefig('study_vs_predicted.png')
     return fig
 
+def task_11_improvement_check(df):
+    percentage = (df["improvement_rate"] > 1).mean() * 100
+    print("Percentage of students with improvement rate greater than 1:", percentage)
+    return percentage
 def task_12_most_common_study_time(df):
     return df["peak_study_time"].value_counts().idxmax()
 
@@ -80,6 +84,7 @@ def run_analysis(df):
     print(df.head())
 
     # === STUDENT CALLS: register your function call below ===
+    task_11_improvement_check(df)
     # Example: task_00_example(df)
     task_09_study_vs_score_plot(df) 
     task_01_dataset_overview(df)
