@@ -1,7 +1,13 @@
-import pandas as pd
+import random
+
 
 # === STUDENT IMPORTS: add your import below, one per line ===
+
+# Example: import matplotlib.pyplot as plt
+import pandas as pd
 import matplotlib.pyplot as plt
+
+
 import seaborn as sns
 
 DATA_FILE = "Education_numerical.csv"
@@ -9,8 +15,26 @@ DATA_FILE = "Education_numerical.csv"
 
 def load_data(path=DATA_FILE):
     return pd.read_csv(path)
+def task_08_score_distribution_plot(df):
+    plt.figure()
+    df["overall_avg"].plot(kind="hist", bins=10, edgecolor="black")
+    plt.xlabel("Overall Average")
+    plt.ylabel("Number of Students")
+    plt.title("Distribution of Overall Average Scores")
+    output_path = "overall_avg_hist.png"
+    plt.savefig(output_path)
+    plt.close()
+    return output_path
+
+def task_12_most_common_study_time(df):
+    return df["peak_study_time"].value_counts().idxmax()
 
 
+# Task 03: Data Quality Check Function (Updated for DataFrame)
+def task_03_data_quality(df):
+    missing_counts_dict = df.isnull().sum().to_dict()
+    duplicate_count = int(df.duplicated().sum())
+    return (missing_counts_dict, duplicate_count)
 # === STUDENT FUNCTIONS: add your function below ===
 def task_04_top_scorers(df):
     top10 = df.sort_values("predicted_score", ascending=False).head(10)
@@ -99,10 +123,8 @@ def task_11_improvement_check(df):
 def task_12_most_common_study_time(df):
     return df["peak_study_time"].value_counts().idxmax()
 
-
-def run_analysis(df):
-    print("Dataset shape:", df.shape)
-    print(df.head())
+df = load_data()
+missing_dict, duplicates = task_03_data_quality(df)
 
     # === STUDENT CALLS: register your function call below ===
 
@@ -119,10 +141,7 @@ def run_analysis(df):
     task_12_most_common_study_time(df)
 
 
-def main():
-    df = load_data()
-    run_analysis(df)
+print(f"Missing values per column: {missing_dict}")
+print(f"Duplicate rows count: {duplicates}")
 
 
-if __name__ == "__main__":
-    main()
