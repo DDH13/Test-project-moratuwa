@@ -46,6 +46,17 @@ def task_05_bottom_scorers(df):
     return result
 
 
+def task_06_study_habits(df):
+    average = df["study_hours_week"].mean()
+    maximum = df["study_hours_week"].max()
+
+    result = (average, maximum)
+    print("Study hours per week - Average:", average)
+    print("Study hours per week - Maximum:", maximum)
+
+    return result
+
+
 def task_07_class_size_groups(df):
     small = (df["class_size"] < 20).sum()
     medium = ((df["class_size"] >= 20) & (df["class_size"] <= 40)).sum()
@@ -100,6 +111,7 @@ def run_analysis(df):
 
     task_01_dataset_overview(df)
     task_05_bottom_scorers(df)
+    task_06_study_habits(df)
     task_07_class_size_groups(df)
     task_08_score_distribution_plot(df)
     task_09_study_vs_score_plot(df)
