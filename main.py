@@ -36,6 +36,11 @@ def task_03_data_quality(df):
     duplicate_count = int(df.duplicated().sum())
     return (missing_counts_dict, duplicate_count)
 # === STUDENT FUNCTIONS: add your function below ===
+def task_04_top_scorers(df):
+    top10 = df.sort_values("predicted_score", ascending=False).head(10)
+    result = top10["student_id"].tolist()
+    print("Top 10 scorers:", result)
+    return result
 # Each function must be named task_<NN>_<slug>(df) per the table in Readme.md,
 # and must return its result (not just print it) so test.py can check it.
 #
@@ -62,6 +67,17 @@ def task_05_bottom_scorers(df):
     bottom = df.sort_values("predicted_score", ascending=True).head(10)
     result = bottom["student_id"].tolist()
     print("Bottom 10 scorers:", result)
+    return result
+
+
+def task_06_study_habits(df):
+    average = df["study_hours_week"].mean()
+    maximum = df["study_hours_week"].max()
+
+    result = (average, maximum)
+    print("Study hours per week - Average:", average)
+    print("Study hours per week - Maximum:", maximum)
+
     return result
 
 
@@ -111,13 +127,19 @@ df = load_data()
 missing_dict, duplicates = task_03_data_quality(df)
 
     # === STUDENT CALLS: register your function call below ===
-    #task_11_improvement_check(df)
+
+    task_04_top_scorers(df)
     # Example: task_00_example(df)
-    #task_09_study_vs_score_plot(df) 
-    #task_01_dataset_overview(df)
-    #task_07_class_size_groups(df)
-    #task_08_score_distribution_plot(df)
-    #task_12_most_common_study_time(df)
+
+    task_01_dataset_overview(df)
+    task_05_bottom_scorers(df)
+    task_06_study_habits(df)
+    task_07_class_size_groups(df)
+    task_08_score_distribution_plot(df)
+    task_09_study_vs_score_plot(df)
+    task_11_improvement_check(df)
+    task_12_most_common_study_time(df)
+
 
 print(f"Missing values per column: {missing_dict}")
 print(f"Duplicate rows count: {duplicates}")
